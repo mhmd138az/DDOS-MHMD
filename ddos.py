@@ -16,8 +16,8 @@ RESET = '\033[0m'
 def print_banner():
     os.system("clear")
     os.system("figlet -f slant 'DDoS Attack'")
-    print(f"{CYAN}Author: mhmd-error{RESET}")
-    print(f"{CYAN}GitHub: https://github.com/mhmd138az{RESET}")
+    print(f"{CYAN}Author: mhmd-error'{RESET}")
+    print(f"{CYAN}GitHub: https://github.com/mhmd138az'{RESET}")
     print(f"{YELLOW}Welcome to the DDoS Attack Tool!{RESET}")
     print()
 
