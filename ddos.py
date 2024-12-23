@@ -5,14 +5,14 @@ import socket
 import random
 from datetime import datetime
 
-# رنگ‌ها
+# color
 GREEN = '\033[92m'
 CYAN = '\033[96m'
 RED = '\033[91m'
 YELLOW = '\033[93m'
 RESET = '\033[0m'
 
-# طراحی متنی
+# matn
 def print_banner():
     os.system("clear")
     os.system("figlet -f slant 'DDoS Attack'")
