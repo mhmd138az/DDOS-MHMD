@@ -16,11 +16,10 @@ RESET = '\033[0m'
 def print_banner():
     os.system("clear")
     os.system("figlet -f slant 'DDoS Attack'")
-  print "Author   : mhmd-error"
-print "github   : https://github.com/mhmd138az"
-    print(f"{YELLOW}Welcome to the DDoS Attack Tool!{RESET}")
-    print()
-
+    print "Author   : mhmd-error"
+    print "github   : https://github.com/mhmd138az"
+    ip = raw_input("IP Target : ")
+    port = input("Port       : ")
 def show_progress_bar():
     for i in range(101):
         time.sleep(0.05)
