@@ -1,7 +1,6 @@
 import requests
 import time
 
-# متد برای بررسی آسیب‌پذیری SQL Injection
 def check_sql_injection(url):
     payloads = [
         "' OR '1'='1",
@@ -21,7 +20,7 @@ def check_sql_injection(url):
         try:
             print(f"Testing payload: {payload}")
             response = requests.get(test_url, headers=headers, timeout=10)
-            # بررسی خطاهای احتمالی در پاسخ
+            print(f"Status Code: {response.status_code}")  # نمایش کد وضعیت
             if "error" in response.text.lower() or response.status_code == 500:
                 print(f"[!] SQL Injection vulnerability detected at: {test_url}")
                 return True
@@ -29,14 +28,14 @@ def check_sql_injection(url):
                 print(f"[+] No SQL Injection vulnerability detected at: {test_url}")
         except requests.exceptions.RequestException as e:
             print(f"Error connecting to the website: {e}")
-        time.sleep(1)  # برای جلوگیری از حملات دزدی درخواست
+        time.sleep(1)
 
     return False
 
-# متد برای بررسی دسترسی سایت
 def check_website_accessibility(url):
     try:
         response = requests.get(url, timeout=10)
+        print(f"Status Code: {response.status_code}")  # نمایش کد وضعیت
         if response.status_code == 200:
             print("Website is accessible.")
             return True
@@ -47,7 +46,6 @@ def check_website_accessibility(url):
         print(f"Error accessing the website: {e}")
         return False
 
-# متد اصلی برای انجام اسکن آسیب‌پذیری
 def perform_vulnerability_scan(url):
     if check_website_accessibility(url):
         print("[+] Checking for SQL Injection vulnerabilities...")
